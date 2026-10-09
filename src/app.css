@@ -1,0 +1,226 @@
+/* Shared application theme */
+:root {
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  color: #193344;
+  background: #f3f6f8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  --surface: #ffffff;
+  --surface-muted: #f7f9fb;
+  --text: #193344;
+  --text-muted: #526575;
+  --border: #d5dfe6;
+  --accent: #0f766e;
+  --accent-bright: #0d9488;
+  --accent-soft: #eaf6f2;
+
+  /* Svelte Flow theme */
+  --xy-background-color: #f3f6f8;
+  --xy-background-pattern-color: #ccd7df;
+  --xy-node-background-color: var(--surface);
+  --xy-node-color: var(--text);
+  --xy-node-border: 1px solid var(--border);
+  --xy-node-border-radius: 14px;
+  --xy-node-boxshadow-hover: 0 8px 24px rgb(25 51 68 / 10%);
+  --xy-node-boxshadow-selected: 0 0 0 2px var(--accent);
+  --xy-edge-stroke: #94a8b5;
+  --xy-edge-stroke-width: 2;
+  --xy-edge-stroke-selected: var(--accent);
+  --xy-handle-background-color: var(--accent);
+  --xy-handle-border-color: var(--surface);
+  --xy-controls-button-background-color: var(--surface);
+  --xy-controls-button-background-color-hover: var(--accent-soft);
+  --xy-controls-button-color: var(--text);
+  --xy-controls-button-border-color: var(--border);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-width: 320px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Canvas */
+.svelte-flow {
+  background: var(--xy-background-color);
+}
+
+/* Shared shell for EVERY node, including custom nodes */
+.svelte-flow__node {
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent-bright);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow:
+    0 2px 4px rgb(25 51 68 / 3%),
+    0 10px 28px rgb(25 51 68 / 7%);
+  font-size: 14px;
+  line-height: 1.5;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.svelte-flow__node:hover {
+  border-color: #a5c9c3;
+  border-top-color: var(--accent-bright);
+  box-shadow: 0 12px 32px rgb(25 51 68 / 12%);
+}
+
+.svelte-flow__node.selected,
+.svelte-flow__node:focus-within {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 2px rgb(15 118 110 / 20%),
+    0 12px 32px rgb(25 51 68 / 10%);
+}
+
+/* Built-in nodes */
+.svelte-flow__node-default,
+.svelte-flow__node-input,
+.svelte-flow__node-output {
+  padding: 18px 22px;
+  font-weight: 600;
+}
+
+/* Custom node content; the outer shell supplies its appearance */
+.svelte-flow__node .calculator {
+  width: 300px;
+  padding: 22px;
+}
+
+.svelte-flow__node h2 {
+  margin: 0 0 20px;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+/* Shared forms throughout the app */
+label {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 16px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-muted);
+  color: var(--text);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: #94a8b5;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgb(15 118 110 / 12%);
+}
+
+/* Shared results panels */
+.result {
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  border: 1px solid #cce5da;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: #16624f;
+}
+
+.result strong {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.result span {
+  color: #356557;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Connection points */
+.svelte-flow__handle {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--surface);
+  background: var(--accent);
+}
+
+/* Canvas controls */
+.svelte-flow__controls {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgb(25 51 68 / 8%);
+}
+
+.svelte-flow__controls-button {
+  width: 34px;
+  height: 34px;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
